@@ -16,4 +16,4 @@ def sent_message_handle(msg):
 
 
 if __name__ == "__main__":
-    io.run(app, host="localhost")
+    io.run(app)
