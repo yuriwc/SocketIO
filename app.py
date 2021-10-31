@@ -24,4 +24,4 @@ def sent_message_handle(msg):
 
 
 if __name__ == "__main__":
-    io.run(app)
+    io.run(app, debug=True)
