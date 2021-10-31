@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <script>
         window.onload = function(){
-            const socket = io('https://socketiomatchbook.herokuapp.com:5000');
+            const socket = io('https://socketiomatchbook.herokuapp.com');
             socket.on('connect', () => {
                 socket.send('Usuário conectado ao socket')
             });
