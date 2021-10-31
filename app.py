@@ -4,7 +4,7 @@ from flask.templating import render_template
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
-io = SocketIO(app)
+io = SocketIO(app, cors_allowed_origins="*")
 
 @app.route("/")
 def home():
