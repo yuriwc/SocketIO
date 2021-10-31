@@ -13,7 +13,7 @@ def home():
 @io.on('sentMessage')
 def sent_message_handle(msg):
     emit('getMessage', msg, broadcast=True)
-    
+
 
 if __name__ == "__main__":
-    io.run(app, debug=True)
+    io.run(app, debug=False)
