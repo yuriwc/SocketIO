@@ -4,7 +4,7 @@ from flask.templating import render_template
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
-io = SocketIO(app, cors_allowed_origins="*")
+io = SocketIO(app)
 
 @app.route("/")
 def home():
@@ -16,4 +16,4 @@ def sent_message_handle(msg):
 
 
 if __name__ == "__main__":
-    io.run(app, debug=False)
+    io.run(app, host="localhost")
