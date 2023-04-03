@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .chat {
-            margin: 10px;
-        }
+      .chat {
+        margin: 10px;
+      }
     </style>
-</head>
-<body>
-
-    <div style="display: flex; flex-direction: column;" class="container">
-       
-    </div>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column" class="container"></div>
 
     <div>
-        <form >
-            <input type="text" placeholder="Nome">
-            <input type="text" placeholder="Mensagem">
-            <button type="submit">Enviar</button>
-        </form>
+      <form>
+        <input type="text" placeholder="Nome" />
+        <input type="text" placeholder="Mensagem" />
+        <button type="submit">Enviar</button>
+      </form>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
     <script>
-        window.onload = function(){
-            const socket = io('https://socketiomatchbook.herokuapp.com');
-            socket.on('connect', () => {
-                socket.send('Usuário conectado ao socket')
-            });
+      window.onload = function () {
+        const socket = io("https://matchbook-chat.onrender.com");
+        socket.on("connect", () => {
+          socket.send("Usuário conectado ao socket");
+        });
 
-            const form = document.querySelector("form");
-            form.addEventListener("submit", function(event){
-                event.preventDefault();
-                const nome = event.target[0]
-                const message = event.target[1]
-                socket.emit('sentMessage', {name: nome.value, message: message.value})
-                message.value = ''
-            })
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const nome = event.target[0];
+          const message = event.target[1];
+          socket.emit("sentMessage", {
+            name: nome.value,
+            message: message.value,
+          });
+          message.value = "";
+        });
 
-            socket.on('getMessage', (msg) => {
-                const span = document.createElement("span");
-                span.className = ("chat")
-                span.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`
-                let cont = document.querySelector(".container")
-                cont.append(span);
-            })
-        }
-        
-
+        socket.on("getMessage", (msg) => {
+          const span = document.createElement("span");
+          span.className = "chat";
+          span.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
+          let cont = document.querySelector(".container");
+          cont.append(span);
+        });
+      };
     </script>
-</body>
+  </body>
 </html>
