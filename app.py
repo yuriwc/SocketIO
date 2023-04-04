@@ -33,6 +33,8 @@ def on_leave(data):
 
 @io.on('sentMessage')
 def sent_message_handle(msg):
+    print('aquiii')
+    print(msg)
     room = msg['room']
     message = msg['msg']
     emit('getMessage', message, broadcast=True, room=room)
